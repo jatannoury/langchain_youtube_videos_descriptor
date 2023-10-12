@@ -4,25 +4,11 @@ import SignUpInput from "../components/SignUpInput";
 import { toast } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import backend_cnx from "../tools/backend_connection";
 
 const SignUp = () => {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isError) {
-  //     message?.map((err) => {
-  //       toast.error(`${err.loc[1]} ${err.msg}`, {
-  //         autoClose: 2000,
-  //       });
-  //     });
-  //   } else if (isSuccess) {
-  //     toast.success("User Regsitered", {
-  //       autoClose: 1000,
-  //     });
-  //     navigate("/");
-  //   } else if (isLoading) {
-  //   }
-  // }, [isError, isSuccess]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -36,10 +22,16 @@ const SignUp = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(register(formData));
-    console.log(formData)
+    let response = await backend_cnx.register(formData);
+    if (response.status === 201) {
+      toast.success("Success", {
+        autoClose: 1000,
+      });
+      navigate("/");
+    }
+    console.log(response);
   };
-  
+
   return (
     <div className="signup_container">
       <form className="form_inputs" onSubmit={handleSubmit}>
