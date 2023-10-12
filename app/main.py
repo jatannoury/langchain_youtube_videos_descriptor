@@ -16,6 +16,7 @@ app.add_middleware(
 
 
 app.include_router(routers['users'], prefix='/users')
+app.include_router(routers['langchain'], prefix='/ml_models/langchain')
 
 @app.get("/")
 def ping():

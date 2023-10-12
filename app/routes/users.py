@@ -10,7 +10,7 @@ dynamoDB_handler = DynamoDbHandler()
 router = APIRouter()
 
 @router.post("/register", status_code=201)
-def sign_up(formData: User):
+async def sign_up(formData: User):
     try:
         dynamoDB_handler.post_user_table(formData)
         return {"message": "User created successfully!"}
@@ -18,7 +18,7 @@ def sign_up(formData: User):
         raise HTTPException(status_code=401)
 
 @router.post("/login", status_code=200)
-def sign_in(formData: SignIn):
+async def sign_in(formData: SignIn):
     user_info = formData.__dict__
     db_response = dynamoDB_handler.get_user_info(user_info['email'])
     try:
