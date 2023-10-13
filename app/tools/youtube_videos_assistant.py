@@ -1,4 +1,4 @@
-from app.config.template_prompts import YOUTUBE_DISCUSSION_PROMPT
+from config.template_prompts import YOUTUBE_DISCUSSION_PROMPT
 from langchain.document_loaders import YoutubeLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.llms import OpenAI

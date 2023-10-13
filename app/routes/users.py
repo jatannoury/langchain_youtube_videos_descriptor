@@ -1,8 +1,8 @@
-from app.controllers.aws_controllers.dynamo_db_controller import DynamoDbHandler
+from controllers.aws_controllers.dynamo_db_controller import DynamoDbHandler
 from fastapi import  APIRouter,HTTPException,Response
 
-from app.models.SignIn import SignIn
-from app.models.User import User
+from models.SignIn import SignIn
+from models.User import User
 
 
 
